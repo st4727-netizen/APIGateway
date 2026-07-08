@@ -23,7 +23,7 @@ const app = express();
 
 app.use(express.json());
 
-// Conexión a MongoDB
+// Conectar a MongoDB
 connectDB();
 
 // Ruta principal
@@ -31,15 +31,21 @@ app.get("/", (req, res) => {
     res.send("Cleaning Store API Running");
 });
 
-// CRUD Routes
+// CRUD
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use("/carts", cartRoutes);
 app.use("/orders", orderRoutes);
 app.use("/payments", paymentRoutes);
 
-const PORT = process.env.PORT || 5100;
+// Solo escuchar el puerto cuando se ejecuta localmente
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 5100;
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+    });
+}
+
+// Exportar para Vercel
+module.exports = app;
