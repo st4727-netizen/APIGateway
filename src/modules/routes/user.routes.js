@@ -10,10 +10,14 @@ const {
     deleteUser
 } = require("../controllers/user.controller");
 
-router.post("/", createUser);
-router.get("/", getUsers);
-router.get("/:id", getUserById);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+router.post("/user", createUser);
+router.get("/user", getUsers);
+router.get("/user/:id", getUserById);
+router.put("/user/:id", updateUser);
+router.delete("/user/:id", deleteUser);
+
+router.get("/test", (req, res) => {
+    res.send("USER ROUTER OK");
+});
 
 module.exports = router;
