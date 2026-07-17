@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const validateAppToken = require("./src/middlewares/appToken.middleware");
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
     res.send("Cleaning Store API Running");
 });
 
+app.use(validateAppToken);
 // CRUD
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
