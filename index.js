@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const validateAppToken = require("./src/middlewares/appToken.middleware");
+const helmet = require("helmet");
 
 dotenv.config();
 
@@ -21,6 +22,8 @@ const orderRoutes = require("./src/modules/routes/order.routes");
 const paymentRoutes = require("./src/modules/routes/payment.routes");
 
 const app = express();
+
+app.use(helmet());
 
 app.use(express.json());
 
